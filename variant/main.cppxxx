@@ -1,0 +1,16 @@
+#include <iostream>
+#include "export_c.h"
+
+
+int main() {
+
+
+    auto v = SetString("xxxx",3);
+    std::cout << getType(v) << std::endl;
+
+    char tmp[100] = {0};
+    int
+    l = getString(v, tmp, 100);
+    std::cout << tmp  << "," <<l<< std::endl;
+    return 0;
+}
