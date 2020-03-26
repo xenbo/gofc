@@ -28,7 +28,7 @@ unsigned long long GetuInt64(govariant *gv);
 float GetFloat(govariant *gv);
 double GetDouble(govariant *gv);
 int GetString(govariant *gv, void *s, int len);
-
+char *ToString(govariant *gv);
 
 #ifdef __cplusplus
 }

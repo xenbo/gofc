@@ -12,7 +12,9 @@ import (
 )
 
 type Variant struct {
-	iv *C.govariant
+	iv     *C.govariant
+	TypeId int
+	Str    string
 }
 
 func NewVariant(f interface{}) Variant {
@@ -53,34 +55,52 @@ func NewVariant(f interface{}) Variant {
 
 func (v *Variant) SetInt(f int) {
 	v.iv = C.SetInt(C.int(f))
+	v.Str = C.GoString(C.ToString(v.iv))
+	v.TypeId = int(C.GetType(v.iv))
 }
 
 func (v *Variant) SetInt64(f int64) {
 	v.iv = C.SetInt64(C.longlong(f))
+	v.Str = C.GoString(C.ToString(v.iv))
+	v.TypeId = int(C.GetType(v.iv))
 }
 
 func (v *Variant) SetUInt(f uint) {
 	v.iv = C.SetuInt(C.uint(f))
+	v.Str = C.GoString(C.ToString(v.iv))
+	v.TypeId = int(C.GetType(v.iv))
 }
 
 func (v *Variant) SetUInt64(f uint64) {
 	v.iv = C.SetuInt64(C.ulonglong(f))
+	v.Str = C.GoString(C.ToString(v.iv))
+	v.TypeId = int(C.GetType(v.iv))
 }
 
 func (v *Variant) SetFloat32(f float32) {
 	v.iv = C.SetFloat(C.float(f))
+	v.Str = C.GoString(C.ToString(v.iv))
+	v.TypeId = int(C.GetType(v.iv))
 }
 
 func (v *Variant) SetFloat64(f float64) {
 	v.iv = C.SetDouble(C.double(f))
+	v.Str = C.GoString(C.ToString(v.iv))
+	v.TypeId = int(C.GetType(v.iv))
 }
 
 func (v *Variant) SetString(f string) {
 	v.iv = C.SetString(C.CString(f), C.int(len(f)))
+	//v.Str = C.GoString(C.ToString(v.iv))
+
+	b, l:= v.AsString()
+	v.Str = string(b[0:l])
+	v.TypeId = int(C.GetType(v.iv))
 }
 
 func (v *Variant) AsInt() int {
 	return int(C.GetInt(v.iv))
+
 }
 
 func (v *Variant) AsInt64() int64 {

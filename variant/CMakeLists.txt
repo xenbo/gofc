@@ -5,4 +5,4 @@ set(CMAKE_CXX_STANDARD 14)
 
 include_directories(include)
 
-add_executable(fc_variant main.cpp variant.cpp hex.cpp base64.cpp string.cpp export_c.h export_c.cpp)
+add_executable(fc_variant test/main.cpp variant.cpp hex.cpp base64.cpp string.cpp export_c.h export_c.cpp)

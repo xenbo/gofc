@@ -22,7 +22,7 @@ govariant *SetuInt(unsigned int f) { return new govariant(f); }
 
 govariant *SetuInt64(unsigned long long f) { return new govariant(f); }
 
-govariant *SetString(char *s, int len) { return new govariant(std::string((const char*)s, len)); }
+govariant *SetString(char *s, int len) { return new govariant(std::string((const char *) s, len)); }
 
 govariant *SetFloat(float f) { return new govariant(f); }
 
@@ -51,6 +51,10 @@ int GetString(govariant *gv, void *s, int len) {
     return len;
 }
 
+char *ToString(govariant *gv) {
+    auto a = std::string(gv->v.as_string());
+    return (char *) a.c_str();
+}
 
 
 
